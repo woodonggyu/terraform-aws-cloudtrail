@@ -12,9 +12,5 @@ policy:
     is_organization_trail: ~
     s3_key_prefix: ~
     insight_selector: {ApiCallRateInsight: true, ApiErrorRateInsight: true}
-    event_selector: {
-      read_write_type: "All",
-      include_management_events: true,
-      exclude_management_event_sources : ~
-    }
+    event_selector: {read_write_type: "All", include_management_events: true, exclude_management_event_sources: ~, data_resource: {type: "AWS::S3::Object", values: ["arn:aws:s3"]}}
     tags: ~

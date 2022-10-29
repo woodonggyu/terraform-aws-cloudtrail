@@ -30,6 +30,14 @@ resource "aws_cloudtrail" "this" {
       read_write_type                  = var.event_selector[count.index].read_write_type == null ? "All" : var.event_selector[count.index].read_write_type
       include_management_events        = var.event_selector[count.index].include_management_events == null ? true : var.event_selector[count.index].include_management_events
       exclude_management_event_sources = var.event_selector[count.index].exclude_management_event_sources == null ? [""] : var.event_selector[count.index].exclude_management_event_sources
+
+      dynamic "data_resource" {
+        for_each = lookup(var.event_selector[count.index], "data_resource", null) == null ? [] : [lookup(var.event_selector[count.index], "data_resource")]
+        content {
+          type   = lookup(data_resource.value, "type")
+          values = lookup(data_resource.value, "values")
+        }
+      }
     }
   }
 
