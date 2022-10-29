@@ -1,3 +1,5 @@
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail
+
 variable "policy" {
   description = "(Required) Number of CloudTrails policy to create"
   type        = list(any)
@@ -82,6 +84,12 @@ variable "s3_key_prefix" {
 
 variable "insight_selector" {
   description = "(Optional) Configuration block for identifying unusual operational activity."
+  type        = list(any)
+  default     = null
+}
+
+variable "event_selector" {
+  description = "(Optional) Specifies an event selector for enabling data event logging."
   type        = list(any)
   default     = null
 }

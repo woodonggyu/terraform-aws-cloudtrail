@@ -5,8 +5,7 @@ locals {
 }
 
 module "cloudtrail" {
-  source  = "woodonggyu/cloudtrail/aws"
-  version = "1.0.2"
+  source  = "..//"
 
   policy                        = local.config_vars.policy
   name                          = local.config_vars.policy[*].name
@@ -22,5 +21,6 @@ module "cloudtrail" {
   is_organization_trail         = local.config_vars.policy[*].is_organization_trail
   s3_key_prefix                 = local.config_vars.policy[*].s3_key_prefix
   insight_selector              = local.config_vars.policy[*].insight_selector
+  event_selector                = local.config_vars.policy[*].event_selector
   tags                          = local.config_vars.policy[*].tags
 }

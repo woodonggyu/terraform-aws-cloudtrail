@@ -1,6 +1,6 @@
 policy:
   - name: "cloudtrail-name-to-create"
-    s3_bucket_name: "s3-bucket-to-collect-cloudtrail-logs"
+    s3_bucket_name: "aws-cloudtrail-logs-362252864672-d1626848"
     enable_logging: ~
     enable_log_file_validation: ~
     sns_topic_name: ~
@@ -12,4 +12,9 @@ policy:
     is_organization_trail: ~
     s3_key_prefix: ~
     insight_selector: {ApiCallRateInsight: true, ApiErrorRateInsight: true}
+    event_selector: {
+      read_write_type: "All",
+      include_management_events: true,
+      exclude_management_event_sources : ~
+    }
     tags: ~
