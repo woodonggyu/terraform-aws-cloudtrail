@@ -1,4 +1,4 @@
-# terragrunt-aws-cloudtrail
+# terraform-aws-cloudtrail
 Terraform module which creates AWS CloudTrail.
 
 ## Examples
