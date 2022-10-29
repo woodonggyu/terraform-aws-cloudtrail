@@ -1,5 +1,5 @@
 # terragrunt-aws-cloudtrail
-Terragrunt Example which creates CloudTrail.
+Terragrunt Example which creates CloudTrail. (include. Terraform module)
 
 ## Examples
 * See [Example Codes](https://github.com/woodonggyu/terragrunt-aws-cloudtrail/tree/main/examples) for full details.
