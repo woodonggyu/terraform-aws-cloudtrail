@@ -1,7 +1,7 @@
 resource "aws_cloudtrail" "this" {
-  count = length(var.policy)
+  count = var.policy == null ? 0 : length(var.policy)
 
-  name                          = format("%s", var.name[count.index])
+  name                          = var.name[count.index]
   s3_bucket_name                = var.s3_bucket_name[count.index]
   enable_logging                = var.enable_logging == null ? false : var.enable_logging[count.index]
   enable_log_file_validation    = var.enable_log_file_validation == null ? false : var.enable_log_file_validation[count.index]
@@ -13,13 +13,14 @@ resource "aws_cloudtrail" "this" {
   kms_key_id                    = var.kms_key_id == null ? "" : var.kms_key_id[count.index]
   is_organization_trail         = var.is_organization_trail == null ? false : var.is_organization_trail[count.index]
   s3_key_prefix                 = var.s3_key_prefix == null ? "" : var.s3_key_prefix[count.index]
+  tags                          = var.tags[count.index]
 
   dynamic "insight_selector" {
     for_each = var.insight_selector[count.index] == null ? {} : var.insight_selector[count.index]
     iterator = insight_selector
 
     content {
-      insight_type = insight_selector.value == true ? insight_selector.key : false
+      insight_type = insight_selector.value
     }
   }
 
@@ -40,6 +41,4 @@ resource "aws_cloudtrail" "this" {
       }
     }
   }
-
-  tags = var.tags[count.index]
 }
