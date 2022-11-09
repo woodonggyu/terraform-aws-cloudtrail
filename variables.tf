@@ -1,8 +1,8 @@
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail
 
 variable "policy" {
-  description = "(Required) Number of CloudTrails policy to create"
-  type        = list(any)
+  description = "(Required) CloudTrails policy to create"
+  type        = any
   default     = null
 }
 
@@ -90,6 +90,6 @@ variable "insight_selector" {
 
 variable "event_selector" {
   description = "(Optional) Specifies an event selector for enabling data event logging."
-  type        = list(any)
+  type        = any
   default     = null
 }
